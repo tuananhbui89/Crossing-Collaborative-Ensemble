@@ -17,16 +17,10 @@ This project requires two separate environments which are TF1 and TF2
 - tensorflow-gpu: 1.15.0
 
 (B) The TF2 eviroment for evaluation using [foolbox](https://foolbox.readthedocs.io/en/stable/) lib which mainly for Brendel & Bethge Attack
-- Python: 3.7
+- Python: 3.7git
 - foolbox: 3.0.4
 - tensorflow-gpu: 2.0.0
 - torch: 1.5.0
-
-## References
-- Our implementation is widely adapted from [ADP](https://github.com/P2333/Adaptive-Diversity-Promoting) implementation. 
-- The B&B attack is adapted from [the implementation](https://github.com/wielandbrendel/adaptive_attacks_paper/tree/master/07_ensemble_diversity) of the paper ["On Adaptive Attacks to Adversarial Example Defenses"](https://arxiv.org/abs/2002.08347). 
-- The Auto-attack is adapted from [the implementation](https://github.com/fra31/auto-attack) of the paper ["Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks", Francesco Croce, Matthias Hein, ICML 2020](https://arxiv.org/abs/2003.01690).
-
 
 ## Baselines 
 We also provide the implementation of the baseline methods in our paper, which are: 
@@ -65,15 +59,21 @@ python main_eval_auto_attack.py --defense=A --num_models=N --dataset=D --model=M
 
 ### Note
 <!-- - B&B attack: We argue against the parameter setting in the paper ["On Adaptive Attacks to Adversarial Example Defenses"](https://arxiv.org/abs/2002.08347) to evaluate the ADP method. It is because the ADP training method used epsilon=U(0.01,0.05) while B&B attack in this paper used the PGD with epsilon=0.15, k=20 as an initialization attack which is very strong attack strength.    -->
-- From my experience, B&B attack usually fail in the initialization attack, to run it smoothly, we modify in the foolbox lib as follow: 
-(1) comment the line 436 in file brendel_bethge.py `# assert is_adversarial(best_advs).all()`
-
+- From my experience, B&B attack usually fail in the initialization attack, to run it smoothly, we modify in the foolbox lib by comment out the line 436 in file brendel_bethge.py 
+```shell
+    # assert is_adversarial(best_advs).all()
+```
 ## Cite
 Please cite our paper if you find this work useful for your research
 
     @article{bui2020improving,
-    title={Improving Ensemble Robustness by Collaboratively Promoting and Demoting Adversarial Robustness},
-    author={Bui, Anh and Le, Trung and Zhao, He and Montague, Paul and deVel, Olivier and Abraham, Tamas and Phung, Dinh},
-    journal={arXiv preprint arXiv:2009.09612},
-    year={2020}
+        title={Improving Ensemble Robustness by Collaboratively Promoting and Demoting Adversarial Robustness},
+        author={Bui, Anh and Le, Trung and Zhao, He and Montague, Paul and deVel, Olivier and Abraham, Tamas and Phung, Dinh},
+        journal={arXiv preprint arXiv:2009.09612},
+        year={2020}
     }
+
+## References
+- Our implementation is widely adapted from [ADP](https://github.com/P2333/Adaptive-Diversity-Promoting) implementation. 
+- The B&B attack is adapted from [the implementation](https://github.com/wielandbrendel/adaptive_attacks_paper/tree/master/07_ensemble_diversity) of the paper ["On Adaptive Attacks to Adversarial Example Defenses"](https://arxiv.org/abs/2002.08347). 
+- The Auto-attack is adapted from [the implementation](https://github.com/fra31/auto-attack) of the paper ["Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks", Francesco Croce, Matthias Hein, ICML 2020](https://arxiv.org/abs/2003.01690).
