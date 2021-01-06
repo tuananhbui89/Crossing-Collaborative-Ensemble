@@ -66,10 +66,10 @@ python main_eval_auto_attack.py --defense=A --num_models=N --dataset=D --model=M
 ## Cite
 Please cite our paper if you find this work useful for your research
 
-    @article{bui2020improving,
+    @inproceedings{bui2020improving,
         title={Improving Ensemble Robustness by Collaboratively Promoting and Demoting Adversarial Robustness},
         author={Bui, Anh and Le, Trung and Zhao, He and Montague, Paul and deVel, Olivier and Abraham, Tamas and Phung, Dinh},
-        journal={arXiv preprint arXiv:2009.09612},
+        booktitle={Proceedings of the AAAI Conference on Artificial Intelligence 2021},
         year={2020}
     }
 
